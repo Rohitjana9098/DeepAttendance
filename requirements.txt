@@ -1,0 +1,15 @@
+numpy
+pandas
+#face recogtion
+scikit-learn
+#
+./dlib-20.0.0-cp312-cp312-win_amd64.whl
+git+https://github.com/ageitgey/face_recognition_models
+setuptools<65
+
+supabase
+bcrypt
+
+segno
+pillow
+streamlit
