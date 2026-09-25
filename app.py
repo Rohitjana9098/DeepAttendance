@@ -1,4 +1,7 @@
 import streamlit as st
+
+st.set_page_config(page_title="Snap Class - AI Attendance", layout="centered")
+
 from src.screen.home_screen import home_screen
 from src.screen.student_screen import student_screen
 from src.screen.teacher_screen import teacher_screen

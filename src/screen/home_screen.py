@@ -24,6 +24,7 @@ def home_screen():
     header_home()
     col_teacher, col_student = st.columns(2, gap="medium")
     with col_teacher:
+        st.markdown("<div class='teacher-card-marker'></div>", unsafe_allow_html=True)
         st.markdown(
             "<div class='lumina-card-top'><div class='lumina-icon-box lumina-icon-indigo'>&#127891;</div>"
             "<span class='lumina-role-tag lumina-role-faculty'>Faculty</span></div>"
@@ -36,6 +37,7 @@ def home_screen():
             st.session_state["login_type"] = "teacher"
             st.rerun()
     with col_student:
+        st.markdown("<div class='student-card-marker'></div>", unsafe_allow_html=True)
         st.markdown(
             "<div class='lumina-card-top'><div class='lumina-icon-box lumina-icon-sky'>&#129489;</div>"
             "<span class='lumina-role-tag lumina-role-scholar'>Scholar</span></div>"
