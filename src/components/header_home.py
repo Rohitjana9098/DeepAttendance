@@ -10,39 +10,20 @@ STUDENT_ICON_PATH = _ASSETS / "student_icon.png"
 
 def header_home():
     st.markdown(
-        """
-        <style>
-        /* Brand title on the home screen */
-        .home-brand {
-            font-family: 'Archivo Black', sans-serif !important;
-            color: #ffffff !important;
-            text-align: center !important;
-            margin-bottom: 0.25rem !important;
-        }
-
-        /* Tagline under the brand title */
-        .home-tagline {
-            font-family: 'Jost', sans-serif !important;
-            color: #F3E3F0 !important;
-            font-size: 1.25rem !important;
-            text-align: center !important;
-            margin-bottom: 2.5rem !important;
-        }
-        </style>
-        """,
+        "<div style='text-align:center; padding-top:1.2rem;'>"
+        "<span class='lumina-live-badge'>"
+        "<span class='lumina-live-dot'></span>"
+        "AI Facial Recognition v2.4 Active</span></div>",
         unsafe_allow_html=True,
     )
-
-    # Hero icon, centered
     if ICON_PATH.exists():
-        _, img_col, _ = st.columns([1, 1, 1])
+        _, img_col, _ = st.columns([3, 2, 3])
         with img_col:
-            st.image(str(ICON_PATH), width=200)
-
+            st.markdown("<div class='lumina-logo'>&#128248;</div>", unsafe_allow_html=True)
     st.markdown(
-        """
-        <h1 class='home-brand'>&#128248; Snap Class</h1>
-        <p class='home-tagline'>AI-powered attendance, one snap at a time.</p>
-        """,
+        "<div style='text-align:center; padding: 0.4rem 0 0.2rem 0;'>"
+        "<p class='lumina-brand-title'>Snap Class</p>"
+        "<p class='lumina-tagline'>Smart automatic attendance, powered by "
+        "real-time neural vision. One snap at a time.</p></div>",
         unsafe_allow_html=True,
     )
