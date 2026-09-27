@@ -28,14 +28,15 @@ p, span, label, div { font-family: 'Plus Jakarta Sans', sans-serif !important; }
 .lumina-logo { width: 3rem; height: 3rem; border-radius: 1rem; background: linear-gradient(135deg, #4f46e5 0%, #6366f1 50%, #8b5cf6 100%); display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 20px -4px rgba(99,102,241,0.45); font-size: 1.5rem; }
 .lumina-brand-title { font-size: 2.25rem; font-weight: 800; letter-spacing: -0.03em; color: #0F172A !important; margin: 0 !important; line-height: 1.1 !important; }
 .lumina-tagline { color: #0F172A !important; font-size: 1rem !important; margin-top: 0.35rem !important; }
-[data-testid="stColumn"] > div { background: rgba(255,255,255,0.92) !important; backdrop-filter: blur(16px) !important; border: 1px solid #e2e8f0 !important; border-radius: 1.5rem !important; box-shadow: 0 10px 25px -5px rgba(99,102,241,0.08) !important; padding: 1.6rem !important; }
-/* Teacher card: #F5F3FF soft lavender — applied via :has() marker inside column */
-[data-testid="stColumn"]:has(.teacher-card-marker) > div { background: #F5F3FF !important; border: 1px solid #DDD6FE !important; box-shadow: 0 10px 25px -5px rgba(139,92,246,0.18) !important; }
+[data-testid="stColumn"] > div { background: transparent !important; border: none !important; box-shadow: none !important; backdrop-filter: none !important; padding: 0.25rem !important; }
+/* Portal cards ONLY */
+[data-testid="stColumn"]:has(.teacher-card-marker) > div { background: #F5F3FF !important; border: 1px solid #DDD6FE !important; border-radius: 1.5rem !important; backdrop-filter: blur(16px) !important; box-shadow: 0 10px 25px -5px rgba(139,92,246,0.18) !important; padding: 1.6rem !important; }
 /* Student card: #F0F9FF soft sky — applied via :has() marker inside column */
-[data-testid="stColumn"]:has(.student-card-marker) > div { background: #F0F9FF !important; border: 1px solid #BAE6FD !important; box-shadow: 0 10px 25px -5px rgba(14,165,233,0.18) !important; }
+[data-testid="stColumn"]:has(.student-card-marker) > div { background: #F0F9FF !important; border: 1px solid #BAE6FD !important; border-radius: 1.5rem !important; backdrop-filter: blur(16px) !important; box-shadow: 0 10px 25px -5px rgba(14,165,233,0.18) !important; padding: 1.6rem !important; }
 .teacher-card-marker, .student-card-marker { display: none !important; height: 0 !important; }
-[data-testid="stColumn"] > div p, [data-testid="stColumn"] > div li { color: #0F172A !important; }
-[data-testid="stColumn"] > div:hover { border-color: rgba(99,102,241,0.35) !important; box-shadow: 0 20px 35px -8px rgba(99,102,241,0.16) !important; }
+[data-testid="stColumn"]:has(.teacher-card-marker) > div p, [data-testid="stColumn"]:has(.teacher-card-marker) > div li,
+[data-testid="stColumn"]:has(.student-card-marker) > div p, [data-testid="stColumn"]:has(.student-card-marker) > div li { color: #0F172A !important; }
+[data-testid="stColumn"]:has(.teacher-card-marker) > div:hover, [data-testid="stColumn"]:has(.student-card-marker) > div:hover { border-color: rgba(99,102,241,0.35) !important; box-shadow: 0 20px 35px -8px rgba(99,102,241,0.16) !important; }
 [data-testid="stColumn"] h2 { font-size: 1.5rem !important; color: #0F172A !important; margin-bottom: 0.25rem !important; }
 .lumina-card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.1rem; }
 .lumina-icon-box { width: 3rem; height: 3rem; border-radius: 1rem; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; }
@@ -63,6 +64,31 @@ section[data-testid="stSidebar"] { background: rgba(255,255,255,0.85) !important
 .lumina-footer { text-align: center; padding: 1.2rem 1rem 0.3rem 1rem; }
 .lumina-footer small { color: #94a3b8 !important; font-size: 0.75rem; }
 a { color: #4f46e5 !important; }
+/* ---------- Unified brand + teacher nav (same logo everywhere) ---------- */
+.snap-hero { text-align: center; padding: 1.2rem 0 0.4rem 0; }
+.snap-hero-logo { margin: 0.7rem auto; display: inline-flex; align-items: center; justify-content: center;
+    background: #fff; border-radius: 1.1rem; padding: 0.35rem 0.9rem;
+    box-shadow: 0 8px 20px -4px rgba(99,102,241,0.45); }
+.snap-hero-logo img { width: auto; height: 56px; max-width: 240px; object-fit: contain; border-radius: 0.6rem; display: block; }
+/* Real asset logo (Logo.png) — rounded, shadowed, centered */
+.snap-logo-img { display: flex; justify-content: center; margin: 0.6rem 0 0.7rem 0; }
+.snap-logo-img img { border-radius: 1.1rem !important; background: #fff;
+    box-shadow: 0 8px 20px -4px rgba(99,102,241,0.45); object-fit: cover; }
+.tp-nav-wrap { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; padding: 0.6rem 0.1rem; }
+.tp-brand { display: flex; align-items: center; gap: 0.65rem; }
+.tp-emblem { min-width: 2.75rem; height: 2.75rem; border-radius: 1rem;
+    background: #fff;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 8px 20px -4px rgba(99,102,241,0.45); overflow: hidden; padding: 0.15rem 0.4rem; }
+.tp-emblem img { height: 36px; width: auto; max-width: 120px; object-fit: contain; border-radius: 0.5rem; display: block; }
+.tp-brand-name { font-weight: 800; font-size: 1.25rem; color: #0F172A !important; margin: 0 !important; letter-spacing: -0.02em; }
+.tp-brand-name-blue { color: #4D61FF !important; }
+.tp-brand-sub { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #64748B !important; margin: 0 !important; }
+@media (max-width: 640px) {
+  .block-container { padding-left: 1rem !important; padding-right: 1rem !important; }
+  .lumina-brand-title { font-size: 1.7rem !important; }
+  .snap-hero-logo { width: 3rem; height: 3rem; font-size: 1.5rem; }
+}
 </style>
 """
 

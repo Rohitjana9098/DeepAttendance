@@ -1,5 +1,7 @@
 import streamlit as st
 
+from src.components.brand import emblem_html, hero_logo_html
+
 DEPARTMENTS = [
     "Computer Science & AI",
     "Data Structures & Algorithms",
@@ -10,31 +12,41 @@ DEPARTMENTS = [
 
 
 def _portal_nav():
-    brand, back = st.columns([3, 1], vertical_alignment="center")
-    with brand:
-        st.markdown(
-            "<div class='tp-brand'>"
-            "<div class='tp-emblem'>&#127891;</div>"
-            "<div style='line-height:1;'>"
-            "<p class='tp-brand-name'>SNAP<span class='tp-brand-name-blue'>CLASS</span></p>"
-            "<p class='tp-brand-sub'>Teacher Lumina</p>"
-            "</div></div>",
-            unsafe_allow_html=True,
-        )
-    with back:
-        if st.button("Go back to Home", key="tp_back_home", type="secondary"):
-            st.session_state.pop("login_type", None)
-            st.session_state.pop("tp_mode", None)
-            st.rerun()
-
-
-def _portal_header():
     st.markdown(
-        "<div style='text-align:center; margin: 0.4rem 0 1rem 0;'>"
+        "<div class='tp-nav-wrap'>"
+        "<div class='tp-brand'>"
+        + emblem_html()
+        + "<div style='line-height:1;'>"
+        "<p class='tp-brand-name'>SNAP<span class='tp-brand-name-blue'>CLASS</span></p>"
+        "<p class='tp-brand-sub'>Teacher Portal</p>"
+        "</div></div></div>",
+        unsafe_allow_html=True,
+    )
+    if st.button("← Back to Home", key="tp_back_home", type="secondary"):
+        st.session_state.pop("login_type", None)
+        st.session_state.pop("tp_mode", None)
+        st.rerun()
+
+
+def _portal_header(mode: str):
+    title = "Register your teacher profile" if mode == "register" else "Welcome back, teacher"
+    sub = (
+        "Set up your faculty credentials to manage automated attendance and classroom rosters."
+        if mode == "register"
+        else "Sign in with your faculty credentials to continue to live attendance."
+    )
+    st.markdown(
+        "<div class='snap-hero' style='padding-top:0.4rem;'>"
+        "<span class='lumina-live-badge'>"
+        "<span class='lumina-live-dot'></span>"
+        "AI Facial Recognition v2.4 Active</span>"
+        + hero_logo_html(size=56)
+        + "<p class='lumina-brand-title' style='font-size:1.9rem;'>Snap Class</p>"
+        "<p class='lumina-tagline'>Smart automatic attendance, powered by "
+        "real-time neural vision. One snap at a time.</p>"
         "<span class='lumina-live-badge tp-badge'>Faculty Access Portal</span>"
-        "<p class='tp-title'>Register your teacher profile</p>"
-        "<p class='tp-sub'>Set up your faculty credentials to manage "
-        "automated attendance and classroom rosters.</p></div>",
+        f"<p class='tp-title'>{title}</p>"
+        f"<p class='tp-sub'>{sub}</p></div>",
         unsafe_allow_html=True,
     )
 
@@ -102,43 +114,32 @@ def teacher_screen():
     style_background_home()
     st.markdown(
         "<style>"
-        ".stApp, .stAppViewContainer, .stMain {"
-        "background-color: #FFFDD0 !important;"
-        "background-image: radial-gradient(at 0% 0%, rgba(99,102,241,0.12) 0px, transparent 50%),"
-        "radial-gradient(at 100% 0%, rgba(244,63,142,0.10) 0px, transparent 50%),"
-        "radial-gradient(at 50% 100%, rgba(255,223,0,0.15) 0px, transparent 60%) !important;}"
-        ".tp-nav { display:flex; align-items:center; justify-content:space-between; padding: 0.6rem 0; }"
-        ".tp-brand { display:flex; align-items:center; gap:0.6rem; }"
-        ".tp-emblem { width:2.75rem; height:2.75rem; background:#FFDF00; border:2px solid #0F172A;"
-        "border-radius:1rem; display:flex; align-items:center; justify-content:center;"
-        "font-size:1.4rem; box-shadow:3px 3px 0px #0F172A; }"
-        ".tp-brand-name { font-weight:900; font-size:1.25rem; color:#0F172A !important; margin:0 !important; }"
-        ".tp-brand-name-blue { color:#4D61FF !important; }"
-        ".tp-brand-sub { font-size:0.6rem; font-weight:800; letter-spacing:0.18em; text-transform:uppercase; color:#64748B !important; margin:0 !important; }"
-        ".tp-badge { background: rgba(77,97,255,0.10) !important; border-color: rgba(77,97,255,0.25) !important; color:#4D61FF !important; }"
-        ".tp-title { font-size:1.6rem; font-weight:900; color:#0F172A !important; margin:0.6rem 0 0.2rem 0 !important; }"
-        ".tp-sub { font-size:0.8rem; color:#0F172A !important; margin:0 !important; }"
+        ".tp-badge { background: rgba(77,97,255,0.10) !important; border-color: rgba(77,97,255,0.25) !important; color:#4D61FF !important; margin-top:0.8rem; }"
+        ".tp-title { font-size:1.6rem; font-weight:800; color:#0F172A !important; margin:0.6rem 0 0.2rem 0 !important; letter-spacing:-0.02em; }"
+        ".tp-sub { font-size:0.85rem; color:#475569 !important; margin:0 auto !important; max-width:26rem; line-height:1.5; }"
         ".tp-strong-pill { font-size:0.65rem; font-weight:700; color:#047857 !important; background:#ECFDF5; border:1px solid #A7F3D0; border-radius:9999px; padding:0.15rem 0.6rem; }"
-        ".stForm { background: rgba(255,255,255,0.95) !important; border:1px solid #E2E8F0 !important; border-radius:1.5rem !important; padding:1.4rem !important; box-shadow: 0 20px 45px -12px rgba(91,92,229,0.12) !important; border-top:6px solid transparent !important; }"
+        ".stForm { background: rgba(255,255,255,0.95) !important; border:1px solid #E2E8F0 !important; border-radius:1.5rem !important; padding:1.4rem !important; box-shadow: 0 20px 45px -12px rgba(91,92,229,0.12) !important; }"
         "label[data-testid='stWidgetLabel'] p { color:#0F172A !important; font-weight:700 !important; font-size:0.75rem !important; }"
         ".stTextInput input, .stSelectbox div[data-baseweb='select'] { border-radius:1rem !important; background:#F8FAFC !important; }"
+        "div[data-testid='stSegmentedControl'] { justify-content:center; }"
         "</style>",
         unsafe_allow_html=True,
     )
     _portal_nav()
-    _portal_header()
     mode = st.session_state.get("tp_mode", "register")
     mode = _portal_switcher(mode)
     st.session_state["tp_mode"] = mode
+    _portal_header(mode)
     if mode == "register":
         _register_form()
     else:
         _login_form()
     st.markdown(
         "<div class='lumina-footer'>"
-        "<span class='lumina-pill'>End-to-End Encrypted</span> "
-        "<span class='lumina-pill'>AI Camera Sync Ready</span><br><br>"
-        "<small>Created with love by <b>APNA COLLEGE</b></small></div>",
+        "<span class='lumina-pill'>&#128737; Anti-Spoofing Protected</span> "
+        "<span class='lumina-pill'>&#128272; End-to-End Encrypted</span> "
+        "<span class='lumina-pill'>&#9889; &lt; 0.2s Detection</span><br><br>"
+        "<small>Snap Class Attendance System &bull; Intelligent Campus Platform &bull; Need Help?</small></div>",
         unsafe_allow_html=True,
     )
 
